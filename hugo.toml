@@ -1,0 +1,31 @@
+baseURL = "https://go-ruby-prime.github.io/"
+title = "go-ruby-prime"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[params.phases]]
+  name = "The generator"
+  status = "ready"
+  blurb = "`Take(n)` / `First(n)` return the first *n* primes (`Prime.take` / `Prime.first`); `Each(ubound, yield)` enumerates every prime `p <= ubound` (`Prime.each(ubound)`); `EachPrime()` is the unbounded cursor."
+[[params.phases]]
+  name = "Primality — exact, not probabilistic"
+  status = "ready"
+  blurb = "`IsPrime(n)` mirrors `Prime.prime?` / `Integer#prime?` exactly: numbers `< 2` are not prime, and every Carmichael number (561, 1105, …) and strong pseudoprime (2047, 3215031751, …) is correctly rejected. Small inputs use trial division; the rest use a deterministic Baillie–PSW test, exact across the whole 64-bit range."
+[[params.phases]]
+  name = "Factorisation"
+  status = "ready"
+  blurb = "`PrimeDivision(n)` returns `[[p, exp], …]` in ascending prime order (`Prime.prime_division` / `Integer#prime_division`), with a leading `[-1, 1]` for negative *n* and a `ZeroError` panic (MRI's `ZeroDivisionError`) for 0. Large cofactors fall back to Pollard's rho (Brent's variant)."
+[[params.phases]]
+  name = "Reconstruction & cursor"
+  status = "ready"
+  blurb = "`Int(pairs)` multiplies `prime**exp` back to the integer (`Prime.int_from_prime_division`), the inverse of `PrimeDivision`; `Next(n)` / `Prev(n)` step to the adjacent prime."
+[[params.phases]]
+  name = "Big-integer value model"
+  status = "ready"
+  blurb = "Every integer flows through `*big.Int`, so a host can map its own `Integer` to and from this package without precision loss — the only dependency is `math/big`."
+[[params.phases]]
+  name = "Differential oracle & coverage"
+  status = "ready"
+  blurb = "Deterministic golden tables (which alone hold coverage at 100%) plus a differential oracle: a corpus computed both here and by the system `ruby` (`Prime.prime?`, `Prime.take`, `Prime.prime_division`, …) and compared; 100% coverage, gofmt + go vet clean, green across all six 64-bit Go arches."
