@@ -41,11 +41,9 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">go-ruby-prime</h1>
-      <p class="sub">Ruby's Prime generation, primality testing &amp; factorisation in pure Go — MRI-compatible, no cgo.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="/docs/">{{ partial "icons/book.html" . }}Documentation</a>
-        <a class="btn btn-ghost" href="https://github.com/go-ruby-prime/prime">{{ partial "icons/github.html" . }}GitHub</a>
-      </div>
+      <p class="sub">Ruby's Prime generation, primality testing &amp; factorisation in {{ if partial "mantra-on.html" . }}Go{{ else }}pure Go{{ end }} — MRI-compatible, {{ if not (partial "mantra-on.html" $) }}no cgo{{ end }}.</p>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
       <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">pure Go · zero cgo</span>{{ end }}<span class="pill">Prime-compatible</span><span class="pill">Take / Each / EachPrime</span><span class="pill">IsPrime</span><span class="pill">PrimeDivision</span><span class="pill">Baillie–PSW</span><span class="pill">Pollard's rho</span><span class="pill">exact to 2⁶⁴</span><span class="pill">MRI byte-exact</span><span class="pill">100% coverage</span><span class="pill">6 arches</span></div>
       <div class="legacy"><div class="badges">
       <a href="/docs/"><img alt="Documentation (MkDocs Material + mike)" src="https://img.shields.io/badge/docs-mkdocs--material-9B1C2E"></a>
